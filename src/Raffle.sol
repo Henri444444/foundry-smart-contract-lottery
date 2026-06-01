@@ -1,4 +1,28 @@
+
+// Layout of Contract:
+// version
+// imports
+// errors
+// interfaces, libraries, contracts
+// Type declarations
+// State variables
+// Events
+// Modifiers
+// Functions
+
+// Layout of Functions:
+// constructor
+// receive function (if exists)
+// fallback function (if exists)
+// external
+// public
+// internal
+// private
+// view & pure functions
+
+
 //SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.19;
 
 /**
@@ -8,13 +32,23 @@ pragma solidity ^0.8.19;
  * @dev Implements Chainlink VRFv2.5
  */
 contract Raffle {
+    /*errors*/
+    error Raffle__SendMoreToEnterRaffle();
+
     uint256 private immutable i_entranceFee;
 
     constructor(uint256 entranceFee){
         i_entranceFee = entranceFee;
     }
 
-    function enterRaffle() public {}
+    function enterRaffle() public payable{
+        //require(msg.value >= i_entranceFee, "Not enough ETH send!");
+        //require(msg.value >= i_entranceFee, SendMoreToEnterRaffle());
+        if(msg.value < i_entranceFee){
+            revert Raffle_SendMoreToEnterRaffle();
+        }
+        
+    }
 
     function pickWinner() public {}
 
