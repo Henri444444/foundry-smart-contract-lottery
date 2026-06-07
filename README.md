@@ -34,4 +34,17 @@ The raffle operates in a continuous, automated loop:
 | Variable Name | Type | Description |
 | :--- | :--- | :--- |
 | `i_entranceFee` | `uint256` | The exact ticket price required to enter the raffle (in Wei). |
-| `i_interval` |
+| `i_interval` | `uint256` | The duration (in seconds) that each raffle round lasts. |
+| `s_raffleState` | `enum` | Tracks if the raffle is currently `OPEN` (0) or `CALCULATING` (1). |
+| `i_subscriptionId` | `uint256` | The funded Chainlink VRF subscription ID used to pay for randomness. |
+
+---
+
+## 🚀 Local Setup & Deployment
+
+### 1. Prerequisites
+Make sure you have your smart contract development framework installed (Foundry or Hardhat) along with the Chainlink contracts library:
+
+```bash
+# For Foundry users
+forge install smartcontractkit/chainlink-brownie-contracts --no-commit
